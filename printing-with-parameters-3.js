@@ -2,14 +2,9 @@ const https = require("https");
 
 function getAndPrintHTML () {
 
-  var options = {
-    host: (process.argv[2]),
-    path: (process.argv[3])
-  }
-
   let buffedData = ""; // anytime you have an empty variable you're going to change the variable so use "let"
 
-  https.get(options, function (response) {
+  https.get(requestOptions, function (response) {
     response.setEncoding("utf8");
     
     response.on("data", function (data) {
@@ -22,7 +17,11 @@ function getAndPrintHTML () {
       console.log(buffedData);
     })
   })
-
 };
 
-getAndPrintHTML();
+let requestOptions = {
+  host: "sytantris.github.io",
+  path: "/http-examples/step2.html"
+};
+
+getAndPrintHTML(requestOptions);
